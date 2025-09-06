@@ -1,0 +1,13 @@
+body {
+    height: 100vh;
+    
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand img {
+    object-fit: cover;
+}
