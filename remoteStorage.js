@@ -1,17 +1,18 @@
 
+let pokeObj = [];
+
+let BASE_URL = 'https://pokeapi.co/api/v2/pokemon/'
 
 
-let BASE_URL = 'https://pokeapi.co/api/v2/pokemon?limit=100&offset=0'
 
 
 
-
-
-async function getPokeData(path="") {
-    let response = await fetch(BASE_URL + path + '.json');
-    let responseToJson = await response.json();
-    
-    console.log(responseToJson);
-    
-    
+async function getPokeData() {
+    for (let index = 1; index < 40; index++) {
+        let response = await fetch(BASE_URL + index);
+        let responseToJson = await response.json();
+        pokeObj.push(responseToJson);
+    }
+    console.log(pokeObj);
+        
 }
