@@ -17,7 +17,7 @@ async function init() {
 function generatePoke() {
     let pokeContent = document.getElementById('content');
     pokeContent.innerHTML = "";
-    for (let index = 0; index < pokeObj.length; index++) {
+    for (let index = 0; index < 20; index++) {
         pokeContent.innerHTML += pokeTemplate(index);
         
     }
@@ -79,23 +79,23 @@ function addPicture0(index) {
             
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/13.png"
         
-        case "fighting":
+        case "psychic":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/14.png"
 
-        case "flying":
+        case "ice":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/15.png"
 
-        case "poison":
+        case "dragon":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/16.png"
 
-        case "ground":
+        case "dark":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/17.png"
         
-        case "rock":
+        case "fairy":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/18.png"
 
@@ -159,23 +159,23 @@ function addPicture1(index) {
             
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/13.png"
         
-        case "fighting":
+        case "psychic":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/14.png"
 
-        case "flying":
+        case "ice":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/15.png"
 
-        case "poison":
+        case "dragon":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/16.png"
 
-        case "ground":
+        case "dark":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/17.png"
         
-        case "rock":
+        case "fairy":
         
             return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/types/generation-vii/lets-go-pikachu-lets-go-eevee/18.png"
 
@@ -186,3 +186,8 @@ function addPicture1(index) {
     
 }
 
+function getBgColor(index) {
+    let type = pokeObj[index].types[0].type.name
+
+    return type
+}

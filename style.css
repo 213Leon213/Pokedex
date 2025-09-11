@@ -1,5 +1,5 @@
 body {
-    height: 100vh;
+    
     
 }
 
@@ -15,4 +15,61 @@ body {
 
 .navbar-brand img {
     object-fit: cover;
+}
+
+#content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.margin-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.text-nowrap-center {
+    text-wrap-mode: nowrap;
+    text-align: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.grass, .bug {
+    background-color: green;
+}
+
+.fire, .dragon, .fighting {
+    background-color: red;
+}
+
+.water, .flying, .ice {
+    background-color: lightblue;
+}
+
+.ground, .rock {
+    background-color: burlywood;
+}
+
+.poison, .ghost {
+    background-color: purple;
+}
+
+.normal, .steel {
+    background-color: gray;
+}
+
+.dark {
+    background-color: brown;
+}
+
+.psychic, .fairy {
+    background-color: pink;
+}
+
+.electric {
+    background-color: yellow;
 }
