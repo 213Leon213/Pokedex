@@ -1,7 +1,3 @@
-body {
-    
-    
-}
 
 .bg-secondary {
     background-color: #6c757d !important;
@@ -38,6 +34,10 @@ body {
     flex-direction: column;
 }
 
+.card-img, .card-img-top {
+    border-radius: 0 !important;
+}
+
 .grass, .bug {
     background-color: green;
 }
@@ -72,4 +72,37 @@ body {
 
 .electric {
     background-color: yellow;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    text-align: center;
+}
+
+.displaynone {
+    display: none !important;
+}
+
+.popup {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    margin-top: 50%vh;
+    z-index: 1;
+    
 }

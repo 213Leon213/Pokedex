@@ -191,3 +191,30 @@ function getBgColor(index) {
 
     return type
 }
+
+function loadMore() {
+    let button = document.getElementById('btn-loadmore');
+    button.style.display = "none";
+    let pokeContent = document.getElementById('content');
+
+    for (let index = 21; index < pokeObj.length; index++) {
+        pokeContent.innerHTML += pokeTemplate(index);
+        
+    }
+}
+
+function showPokemon(index) {
+    let popupBackground = document.getElementById('popup');
+    popupBackground.classList.toggle('displaynone');
+    let popupContent = document.getElementById('popupContent');
+    popupContent.classList.toggle('displaynone');
+    popupContent.innerHTML = "";
+    popupContent.innerHTML += pokeTemplate(index);
+}
+
+function closePopup() {
+    let popupBackground = document.getElementById('popup');
+    popupBackground.classList.toggle('displaynone');
+    let popupContent = document.getElementById('popupContent');
+    popupContent.classList.toggle('displaynone');
+}
