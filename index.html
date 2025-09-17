@@ -17,10 +17,13 @@
 
         <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                    <img src="./assets/img/Logo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+                    <a class="navbar-brand" href="./index.html">
+                    <img src="./assets/img/pokemonball.png" alt="Logo" width="40" height="40" class="d-inline-block align-text-top">
                      <p>Pokedex</p>
                     </a>
+                    <form class="d-flex" role="search" id="form">
+                        <input class="form-control me-2" type="search" placeholder="Search" id="search-bar" oninput="searchBar()" aria-label="Search"/>
+                    </form>
                 </div>
         </nav>
 
@@ -28,7 +31,7 @@
 
     </header>
 
-    <div id="content"></div>
+    <div id="content" class="loader"></div>
     <div id="btn-loadmore" class="btn-container">
         <button onclick="loadMore()" type="button" class="btn btn-warning margin-10">Load More</button>
     </div>

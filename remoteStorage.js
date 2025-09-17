@@ -1,9 +1,11 @@
 
 let pokeObj = [];
 
+
+
 let BASE_URL = 'https://pokeapi.co/api/v2/pokemon/'
 
-
+let EVO_URL = 'https://pokeapi.co/api/v2/evolution-chain/'
 
 
 
@@ -16,3 +18,4 @@ async function getPokeData() {
     console.log(pokeObj);
         
 }
+
