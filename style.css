@@ -74,6 +74,12 @@
     border-radius: 0 !important;
 }
 
+.card:hover {
+    cursor: pointer;
+    transform: scale(1.003);
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+}
+
 .grass, .bug {
     background-color: green;
 }
