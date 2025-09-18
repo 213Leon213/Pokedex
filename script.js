@@ -131,18 +131,18 @@ function ifOnlyOneType(index) {
 function searchBar() {
     let filterList = [];
     let searchbar = document.getElementById('search-bar').value.toLowerCase();
-    if (searchbar.length > 3) {
+    if (searchbar.length > 2) {
+         let advice = document.getElementById('advice'); advice.innerText = "";
         for (let i = 0; i < pokeObj.length; i++) {
             let pokemon = pokeObj[i];
             if (pokemon.name.toLowerCase().includes(searchbar)) {
                 const filtered = pokeObj.filter(pokemon => pokemon.name.toLowerCase().includes(searchbar));
-                filterList.push({pokemon, originalIndex: i}); }
+                filterList.push({pokemon, originalIndex: i});}
                 renderResults(filterList);
             } } else {
-            let innerSearchText = document.getElementById('search-bar');
-            innerSearchText.ariaPlaceholder = "Please type in at least 3 letters."
-            }   if (searchbar.length == 0) { generatePoke();}
-}
+            let advice = document.getElementById('advice');
+            advice.innerText = "Please type in at least 3 letters.";
+            }   if (searchbar.length == 0) { generatePoke(); let advice = document.getElementById('advice'); advice.innerText = "";}}
 
 
 function nextCard(index, event) {
