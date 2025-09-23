@@ -1,29 +1,16 @@
 
-
 async function init() {
     await getPokeData();
     generatePoke();
 }
 
-
-
-
-
-
-
-
-
-
 function generatePoke() {
     let pokeContent = document.getElementById('content');
     pokeContent.classList.remove('loader');
     pokeContent.innerHTML = "";
-    for (let index = 0; index < 20; index++) {
+    for (let index = 0; index < pokeObj.length; index++) {
         pokeContent.innerHTML += pokeTemplate(index);
-        
     }
-    
-    
 }
 
 function addPictureFirst(index) {
@@ -63,16 +50,7 @@ function getBgColor(index) {
     return type
 }
 
-function loadMore() {
-    let button = document.getElementById('btn-loadmore');
-    button.style.display = "none";
-    let pokeContent = document.getElementById('content');
 
-    for (let index = 21; index < pokeObj.length; index++) {
-        pokeContent.innerHTML += pokeTemplate(index);
-        
-    }
-}
 
 function showPokemon(index) {
     let popupBackground = document.getElementById('popup');
@@ -117,9 +95,7 @@ function parseEvolutionChain(chain) {
   while (current) {
     evoList.push(current.species.name);
     current = current.evolves_to[0];
-  }
-
-  return evoList;
+  } return evoList;
 }
 
 function ifOnlyOneType(index) {
@@ -128,21 +104,27 @@ function ifOnlyOneType(index) {
     }
 }
 
-function searchBar() {
+async function loadMore() {
+    let button = document.getElementById('btn-loadmore');
+    button.style.display = "none";
+    let pokeContent = document.getElementById('content');
+    pokeContent.innerHTML = "";
+    pokeContent.classList.add('loader');
+    await loadMoreFetch();
+    pokeContent.classList.remove('loader');
+    for (let index = 0; index < pokeObj.length; index++) {
+        pokeContent.innerHTML += pokeTemplate(index);
+    }
+}
+
+async function searchBar() {
     let filterList = [];
     let searchbar = document.getElementById('search-bar').value.toLowerCase();
-    if (searchbar.length > 2) {
-         let advice = document.getElementById('advice'); advice.innerText = "";
-        for (let i = 0; i < pokeObj.length; i++) {
-            let pokemon = pokeObj[i];
-            if (pokemon.name.toLowerCase().includes(searchbar)) {
-                const filtered = pokeObj.filter(pokemon => pokemon.name.toLowerCase().includes(searchbar));
-                filterList.push({pokemon, originalIndex: i});}
-                renderResults(filterList);
-            } } else {
-            let advice = document.getElementById('advice');
-            advice.innerText = "Please type in at least 3 letters.";
-            }   if (searchbar.length == 0) { generatePoke(); let advice = document.getElementById('advice'); advice.innerText = "";}}
+    document.getElementById('btn-loadmore').style.display = "none";
+    searchBarFilter(searchbar, filterList);
+    noResultsFound(filterList);
+    noInput(searchbar);
+}
 
 
 function nextCard(index, event) {
@@ -174,3 +156,66 @@ function buttonPreviousCheck(index) {
         buttonContainer.classList.toggle('buttons-nextonly');
     }
 }
+
+function noResultsFound(filterList) {
+    if (filterList.length > 0) {
+            renderResults(filterList);
+        } else {
+            let content = document.getElementById('content');
+            return content.innerText = "no results found";
+        }
+}
+
+function noInput(searchbar) {
+    if (searchbar.length === 0) {
+        generatePoke();
+        let advice = document.getElementById('advice');
+        advice.innerText = "";
+        document.getElementById('btn-loadmore').style.display = "";
+    }
+}
+
+function searchBarFilter(searchbar, filterList) {
+    if (searchbar.length > 2) {
+        document.getElementById('btn-loadmore').style.display = "none";
+        let advice = document.getElementById('advice');
+        advice.innerText = "";
+        for (let i = 0; i < pokeObj.length; i++) {
+            let pokemon = pokeObj[i];
+            if (pokemon.name.toLowerCase().includes(searchbar)) {
+                filterList.push({ pokemon, originalIndex: i });
+            }
+        }} else {
+        let advice = document.getElementById('advice');
+        advice.innerText = "Please type in at least 3 letters.";
+    }
+}
+
+function showCardStatsContent(index, event) {
+  event.stopPropagation();
+  let content = document.getElementById('card-content');
+  content.innerHTML = "";
+  if (content.classList.contains('evo-img-container')) {
+    content.classList.remove('evo-img-container');
+  }
+  return content.innerHTML = `  ${renderHPTemplate(index)}
+                                ${renderAttackTemplate(index)}
+                                ${renderDefenseTemplate(index)}
+                                ${renderSpecialAttackTemplate(index)}
+                                ${renderSpecialDefenseTemplate(index)}
+                                ${renderSpeedTemplate(index)}`; 
+}
+
+function renderResults(filterList) {
+    let content = document.getElementById('content');
+    content.innerHTML = "";
+    for (let i = 0; i < filterList.length; i++) {
+      let index = filterList[i].originalIndex;
+      content.innerHTML += `<div class="card margin-10 text-nowrap-center bg-danger text-light border-warning" onclick="showPokemon(${index})" style="width: 12rem;">
+    <h2>${pokeObj[index].name}</h2>
+  <img src="${pokeObj[index].sprites.other.home.front_default}" class="card-img-top ${getBgColor(index)}" alt="...">
+  <div class="card-body column">
+    <img src="${addPictureFirst(index)}" class="card-img-top margin-10" >
+    <${imageCheck(index)}>
+  </div>
+</div>`}}

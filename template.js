@@ -1,6 +1,6 @@
 
 function pokeTemplate(index) {
-    return `<div class="card margin-10 text-nowrap-center bg-danger text-light border-warning" onclick="showPokemon(${index})" style="width: 12rem;">
+    return `<div class="card margin-10 text-nowrap-center bg-danger text-light border-warning card-hover" onclick="showPokemon(${index})" style="width: 12rem;">
     <h2>${pokeObj[index].name}</h2>
   <img src="${pokeObj[index].sprites.other.home.front_default}" class="card-img-top ${getBgColor(index)}">
   <div class="card-body column">
@@ -79,21 +79,7 @@ function showCardMainContent(index) {
                               <div>
                                 <p>Base experience:</p>
                                 <p>${pokeObj[index].base_experience}/p>
-                              </div>`}
-
-function showCardStatsContent(index, event) {
-  event.stopPropagation();
-  let content = document.getElementById('card-content');
-  content.innerHTML = "";
-  if (content.classList.contains('evo-img-container')) {
-    content.classList.remove('evo-img-container');
-  }
-  return content.innerHTML = `  ${renderHPTemplate(index)}
-                                ${renderAttackTemplate(index)}
-                                ${renderDefenseTemplate(index)}
-                                ${renderSpecialAttackTemplate(index)}
-                                ${renderSpecialDefenseTemplate(index)}
-                                ${renderSpeedTemplate(index)}`; 
+                              </div>`
 }
 
 function renderHPTemplate(index) {
@@ -149,42 +135,3 @@ function renderSpeedTemplate(index) {
           </div>
           </div>`
 }
-
-async function showCardEvoContent(index, event) {
-  event.stopPropagation();
-  let content = document.getElementById('card-content');
-  content.innerHTML = "";
-  let speciesRes = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokeObj[index].id}`);
-  let speciesData = await speciesRes.json();
-  let evoRes = await fetch(speciesData.evolution_chain.url);
-  let evoData = await evoRes.json();
-  let evoList = parseEvolutionChain(evoData.chain);
-  content.classList.toggle('evo-img-container');
-  let ul = document.getElementById('ul-navi');
-  ul.classList.toggle('padding-bottom100');
-  await loopEvoContent(evoList, content);
-}
-
-async function loopEvoContent(evoList, content) {
-  for (let i = 0; i < evoList.length; i++) {
-      let name = evoList[i]
-      let pokeRes = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-      let pokeData = await pokeRes.json();
-      content.innerHTML += `<img class="evo-img" style="width: 80px; height: 80px;" src="${pokeData.sprites.other.home.front_default}">`
-    }
-}
-
-
-function renderResults(filterList) {
-    let content = document.getElementById('content');
-    content.innerHTML = "";
-    for (let i = 0; i < filterList.length; i++) {
-      let index = filterList[i].originalIndex;
-      content.innerHTML += `<div class="card margin-10 text-nowrap-center bg-danger text-light border-warning" onclick="showPokemon(${index})" style="width: 12rem;">
-    <h2>${pokeObj[index].name}</h2>
-  <img src="${pokeObj[index].sprites.other.home.front_default}" class="card-img-top ${getBgColor(index)}" alt="...">
-  <div class="card-body column">
-    <img src="${addPictureFirst(index)}" class="card-img-top margin-10" >
-    <${imageCheck(index)}>
-  </div>
-</div>`}}
