@@ -1,6 +1,6 @@
 
 function pokeTemplate(index) {
-    return `<div class="card margin-10 text-nowrap-center bg-danger text-light border-warning card-hover" onclick="showPokemon(${index})" style="width: 12rem;">
+    return `<div class="card margin-10 text-nowrap-center ${getBgColor(index)} text-light border-light card-hover" onclick="showPokemon(${index})" style="width: 12rem;">
     <h2>${pokeObj[index].name}</h2>
   <img src="${pokeObj[index].sprites.other.home.front_default}" class="card-img-top ${getBgColor(index)}">
   <div class="card-body column">
@@ -12,7 +12,7 @@ function pokeTemplate(index) {
 }
 
 function pokeTemplateDetail(index) {
-    return `<div class="card margin-10 text-nowrap-center bg-danger text-light border-warning" onclick="showPokemon(${index})" style="width: 18rem;">
+    return `<div class="card margin-10 text-nowrap-center bg-danger text-light border-light" onclick="showPokemon(${index})" style="width: 18rem;">
     <h2>${pokeObj[index].name}</h2>
   <img src="${pokeObj[index].sprites.other.home.front_default}" class="card-img-top ${getBgColor(index)}">
   <div class="detail-img ${ifOnlyOneType(index)}">

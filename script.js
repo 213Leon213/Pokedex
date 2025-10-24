@@ -219,3 +219,4 @@ function renderResults(filterList) {
     <${imageCheck(index)}>
   </div>
 </div>`}}
+
